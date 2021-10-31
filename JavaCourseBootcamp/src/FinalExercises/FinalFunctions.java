@@ -1,9 +1,15 @@
 package FinalExercises;
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Random;
 import java.util.ArrayList;
 
 public class FinalFunctions {
+
+    final String[] oneDigitNumbers = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+    final String[] teenNumbers = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+    final String[] twoDigitNumbers = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+    final String hundredInWord = " hundred ";
 
     // Ex 1
     public int reverseNumber(int num){
@@ -133,6 +139,94 @@ public class FinalFunctions {
             System.out.println("No data");
         else
             System.out.println(nameGrade[1][indexOfMax] + " " + nameGrade[0][indexOfMax]);
+    }
+
+    // Ex 11
+    public void printSecondHighestNumber(int[] numbers){
+        Arrays.sort(numbers);
+        System.out.println("Secong highest number is: " + numbers[1]);
+    }
+
+    // Ex 12
+    public boolean compare2ArraysForEquality(int[] arr1, int[] arr2){
+        if(arr1.length != arr2.length)
+            return false;
+
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+
+        for(int i = 0; i < arr1.length; i++)
+            if(arr1[i] != arr2[i])
+                return false;
+
+        return true;
+    }
+
+    // Ex 13
+    public void printPrimeNumbers(int[] arr){
+
+        boolean isPrime = true;
+
+        System.out.print("The prime numbers are: ");
+
+        for(int i = 0; i < arr.length; i++) {
+            for (int j = 2; j < arr[i] / 2; j++) {
+                if (arr[i] % j == 0)
+                    isPrime = false;
+            }
+            if(isPrime)
+                System.out.print(arr[i] + ", ");
+
+            isPrime = true;
+        }
+    }
+
+    // Ex 14
+    public String numberToWords(int num){
+
+        String numberInWords = "";
+
+        //Checks for special cases:
+        //  number is negative \ number is teen number ( 10 > 19 including)
+        boolean minusFlag = false;
+
+        if(num < 0) {
+            minusFlag = true;
+            num = Math.abs(num);
+        }
+        if(num >=10 && num <20) {
+            numberInWords = teenNumbers[num % 10];
+            if(minusFlag)
+                numberInWords = "minus " + numberInWords;
+            return numberInWords;
+        }
+
+        // if the number is between 10-19 we extract accordingly
+        // and divide by 100 as we dealt with both numbers at once
+        if(num % 100 >= 10 && num % 100 < 20){
+            numberInWords += teenNumbers[num % 10];
+            num /= 10;
+        }
+        //the number doesn't have a special case of teen number and we need to deal with the 2 numbers separately
+        else{
+            if(num % 10 != 0) //if the last number is 0 we don't take into account
+                numberInWords += oneDigitNumbers[num % 10];
+            num /= 10;
+            numberInWords = twoDigitNumbers[num % 10] + " " + numberInWords;
+            num /= 10;
+        }
+
+        // deal with hundreds if we have
+        if(num != 0){
+            numberInWords = oneDigitNumbers[num % 10] + hundredInWord + numberInWords;
+            num /= 10;
+        }
+
+        //add minus which we checked in the beginning
+        if(minusFlag)
+            numberInWords = "minus " + numberInWords;
+
+        return numberInWords;
     }
 }
 

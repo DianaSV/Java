@@ -10,7 +10,7 @@ public class iOS extends Mobile{
     }
 
     public void callPrint(){
-        System.out.println(osVersion + " " + price);
+        System.out.println("Version is: " + osVersion + ", price is: " + price);
         Details();
     }
 }

@@ -53,6 +53,27 @@ public class Loops {
         return true;
     }
 
+    public static String intToBinary(int num)
+    {
+        String binaryValue = "";
+        if(num < 0)
+            return "Number must be 0 or higher.";
+        if(num == 0){
+            return "00000000";
+        }
+
+        while (num > 0){
+            if(num % 2 == 0)
+                binaryValue = "0" + binaryValue;
+            else
+                binaryValue = "1" + binaryValue;
+            num /= 2;
+        }
+
+        return binaryValue;
+    }
+
+
     public static void main(String[] args) {
 
 //        כתבו תוכנית אשר מקבלת מערך של מספרים שלמים והשתמשו בלולאות. הניחו כי המערך גדול מ 0 וקטן מ 100.
@@ -63,7 +84,7 @@ public class Loops {
 //        הדפיסו את סכום כל המספרים עם אינדקס אי-זוגי במערך.
 //        בדקו האם קיימים איברים במערך שערכם שווה לאינדקס שלהם, במידה וכן, הדפיסו את המספר, במידה ולא, הדפיסו מינוס 1.
 
-        int[] numbers = {152, 9, 1, 3, 13, 246, 67, 10, 66, 0, 7, 6, 31};
+        int[] numbers = {152, 9, 1, 3, 13, 246, 67, 10, 66, 0, 7, 6, 31, 17};
         int sum = 0;
         boolean flag = false;
 
@@ -145,7 +166,7 @@ public class Loops {
         // 9. Convert all the numbers to binary
         System.out.println("\n\nAll the numbers in binary:");
         for (int i = 0; i < numbers.length; i++)
-                System.out.print(Integer.toBinaryString(numbers[i]) + " ");
+                System.out.print(numbers[i] + " = " + intToBinary(numbers[i]) + ", ");
 
 
         // 10. Print Mersenne numbers, if there are none, print -1.
