@@ -9,17 +9,8 @@ public class FinalMain {
         String song = "It might seem crazy what I am 'bout to say";
         String[] listOfWords = {"ABC", "AAAAA", "BBB", "kjhdsfkjo", "JDSDFHKJH", "FGH", "LXCVKJ", "XLCKVJL",
                             "VCKJLK", "VLK;LK", "VLKL"};
-        String[][] namesGrades = new String[2][5];
-        namesGrades[0][0] = "85";
-        namesGrades[0][1] = "76";
-        namesGrades[0][2] = "45";
-        namesGrades[0][3] = "91";
-        namesGrades[0][4] = "82";
-        namesGrades[1][0] = "David";
-        namesGrades[1][1] = "Moshe";
-        namesGrades[1][2] = "Ilana";
-        namesGrades[1][3] = "Shlomo";
-        namesGrades[1][4] = "Hanna";
+        String[][] namesGrades = {{"85", "76", "45", "91", "82"},
+                                    {"David", "Moshe", "Ilana", "Shlomo", "Hanna"}};
 
         // Ex 1
         System.out.println(Ex.reverseNumber(12345));
