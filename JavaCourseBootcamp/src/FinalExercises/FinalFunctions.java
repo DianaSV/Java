@@ -11,6 +11,20 @@ public class FinalFunctions {
     final String[] twoDigitNumbers = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
     final String hundredInWord = " hundred ";
 
+    public void selectionSortArray(int[] numbers){
+
+        for (int i = 0; i < numbers.length - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < numbers.length; j++)
+                if (numbers[j] < numbers[minIndex])
+                    minIndex = j;
+
+            int temp = numbers[minIndex];
+            numbers[minIndex] = numbers[i];
+            numbers[i] = temp;
+        }
+    }
+
     // Ex 1
     public int reverseNumber(int num){
         int temp = 0;
@@ -143,7 +157,7 @@ public class FinalFunctions {
 
     // Ex 11
     public void printSecondHighestNumber(int[] numbers){
-        Arrays.sort(numbers);
+        selectionSortArray(numbers);
         System.out.println("Secong highest number is: " + numbers[1]);
     }
 
@@ -187,9 +201,12 @@ public class FinalFunctions {
         String numberInWords = "";
 
         //Checks for special cases:
-        //  number is negative \ number is teen number ( 10 > 19 including)
+        //  number is zero \ number is negative \ number is teen number ( 10 > 19 including)
         boolean minusFlag = false;
 
+        if(num == 0) {
+            return "zero";
+        }
         if(num < 0) {
             minusFlag = true;
             num = Math.abs(num);
