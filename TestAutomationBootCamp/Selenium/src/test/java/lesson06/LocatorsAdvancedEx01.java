@@ -29,7 +29,7 @@ public class LocatorsAdvancedEx01 {
         list.add(driver.findElement(By.name("locator_name"))); //2
         list.add(driver.findElement(By.tagName("p"))); //3
         list.add(driver.findElement(By.className("locator_class")));// 4
-        list.add(driver.findElement(By.partialLinkText("myLocator(5)"))); //5
+        list.add(driver.findElement(By.partialLinkText("(5)"))); //5
         list.add(driver.findElement(By.linkText("Find my locator (6)"))); //6
         list.add(driver.findElement(By.xpath("//input[@myname='selenium']"))); //7
         list.add(driver.findElement(By.cssSelector("button[class='btn btn-2']"))); //8

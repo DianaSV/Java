@@ -38,13 +38,13 @@ public class AssertsAndVerifEx01 {
     }
 
     @Test
-    public void test02_calculateButton(){
+    public void test02_calculateButton() {
         System.out.println("The size of the button is: " + driver.findElement(By.id("calculate_data")).getSize());
         System.out.println("Location: X - " + driver.findElement(By.id("calculate_data")).getLocation().x +
                 ", Y - " + driver.findElement(By.id("calculate_data")).getLocation().y);
         Assert.assertEquals(driver.findElement(By.id("calculate_data")).isEnabled(), true, "Not enabled");
-        Assert.assertEquals(driver.findElement(By.id("calculate_data")).isDisplayed(), true, "Not enabled");
-        Assert.assertEquals(driver.findElement(By.id("calculate_data")).isSelected(), false, "Not enabled");
+        Assert.assertEquals(driver.findElement(By.id("calculate_data")).isDisplayed(), true, "Not displayed");
+        Assert.assertEquals(driver.findElement(By.id("calculate_data")).isSelected(), false, "Is selected");
         Assert.assertEquals(driver.findElement(By.tagName("input")).getTagName(), "input", "Wrong tag name");
         Assert.assertEquals(driver.findElement(By.xpath("//input[@id='calculate_data']")).getAttribute("value"), "Calculate BMI", "Wrong value");
         Assert.assertEquals(driver.findElement(By.id("new_input")).isDisplayed(), false, "Not everything is filled");
@@ -52,6 +52,6 @@ public class AssertsAndVerifEx01 {
 
     @AfterClass
     public void endSession(){
-//        driver.quit();
+        driver.quit();
     }
 }

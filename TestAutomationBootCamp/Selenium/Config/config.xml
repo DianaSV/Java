@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Environment>
+    <URL>https://atidcollege.co.il/Xamples/bmi/</URL>
+    <Kilograms>70</Kilograms>
+    <Centimeters>170</Centimeters>
+    <ExpectedResult>24</ExpectedResult>
+</Environment>
