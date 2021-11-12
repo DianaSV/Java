@@ -16,6 +16,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.security.Key;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -64,17 +65,48 @@ public class ToDoList {
     @Test
     public void test03_upodateToDo(){
         enterNewTodo("My first To Do");
-
+        updateToDo();
     }
 
     @Step
     public void updateToDo(){
-        WebElement dClick =  driver.findElement(By.xpath("//input[@class='edit']"));
-        System.out.println(dClick.getAttribute("value"));
+
         Actions action = new Actions(driver);
-        action.moveToElement(dClick).doubleClick(dClick).build().perform();
-        dClick.click();
-        System.out.println();
+        WebElement elemToEdit = driver.findElement(By.cssSelector(".view"));
+        elemToEdit.click();
+        action.doubleClick(elemToEdit).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys("edited").sendKeys(Keys.RETURN).build().perform();
+    }
+
+    @Test
+    public void test04_markAsCompleted(){
+        markAsCompleted();
+    }
+
+    @Step
+    public void markAsCompleted(){
+        driver.findElement(By.className("toggle")).click();
+    }
+
+    @Test
+    public void test05_01_filterByMissionDone(){
+        driver.findElement(By.cssSelector("a[href='#/completed']")).click();
+    }
+
+    @Test
+    public void test05_02_filterByMissionUndone(){
+        driver.findElement(By.cssSelector("a[href='#/active']")).click();
+    }
+
+    @Test
+    public void test05_03_filterShowAll(){
+        driver.findElement(By.cssSelector("a[href='#/']")).click();
+    }
+
+    @Test
+    public void test06_ClearCompletedMissions(){
+        WebElement clearButton = driver.findElement(By.className("clear-completed"));
+        if(clearButton.isDisplayed())
+            clearButton.click();
     }
 
     @AfterClass

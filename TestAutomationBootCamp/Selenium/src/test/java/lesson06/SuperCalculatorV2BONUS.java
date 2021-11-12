@@ -46,6 +46,7 @@ public class SuperCalculatorV2BONUS {
         return result;
     }
 
+    //TODO not working properly, 3rd cycle gets wrong sumd
     @Step
     public int multiplyNumbers(int num){
         driver.get("http://juliemr.github.io/protractor-demo/");
