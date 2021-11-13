@@ -30,13 +30,15 @@ public class ReportingSystem {
         driver = new ChromeDriver();
     }
 
-    @Step("")
+    @Step
+    @Description("Send the data to the website to calculate")
     public void insertValues(int weight, int height){
         driver.findElement(By.id("weight")).sendKeys(String.valueOf(weight));
         driver.findElement(By.id("hight")).sendKeys(String.valueOf(height));
     }
 
     @Step
+    @Description("Make sure the calculated result is mathematically correct.")
     public void checkMathematicalResult(int weight, int height){
         double heightCmToMeters = Double.valueOf(height) / 99; // <<<<<<<<<<< the wrong row, SHOULD BE 100
         int calculatedBMI = (int) Math.round(weight / (heightCmToMeters * heightCmToMeters));

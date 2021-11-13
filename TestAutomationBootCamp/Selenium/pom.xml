@@ -53,7 +53,21 @@
             <version>1.9.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>sikulix</groupId>
+            <artifactId>sikulix-api</artifactId>
+            <version>2.0.5</version>
+        </dependency>
+
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>sikulix-atid-college</id>
+            <name>Sikulix Repo ATID</name>
+            <url>https://atidcollege.co.il/downloads/libs</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>

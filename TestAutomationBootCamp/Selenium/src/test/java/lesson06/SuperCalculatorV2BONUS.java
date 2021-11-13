@@ -2,6 +2,7 @@ package lesson06;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,6 +31,7 @@ public class SuperCalculatorV2BONUS {
     }
 
     @Step
+    @Description("Get random number from a website between 1-10")
     public int getRandomNumber(){
         WebElement ifrm = driver.findElement(By.xpath("//div[@id='homepage-generator']/iframe[@longdesc='https://www.random.org/integers/']"));//cssSelector("#homepage-generator iframe[longdesc='https://www.random.org/integers/']"));
         driver.switchTo().frame(ifrm);
@@ -46,15 +48,17 @@ public class SuperCalculatorV2BONUS {
         return result;
     }
 
-    //TODO not working properly, 3rd cycle gets wrong sumd
     @Step
-    public int multiplyNumbers(int num){
+    @Description("Multiply between numbers and sum each multiply with each other" +
+            "Example: 5*4 + 5*3 + 5*2 + 5*1 + 5*0 = 50 ")
+    public int multiplyNumbersAndSum(int num){
         driver.get("http://juliemr.github.io/protractor-demo/");
         driver.findElement(By.cssSelector("select option:nth-child(4)")).click();
         WebDriverWait wait = new WebDriverWait(driver,5);
         int countResults = 1, sumOfMultiply = 0;
 
         for(int i =0; i < num; i++) {
+            //Multiply between num * i
             driver.findElement(By.cssSelector("select option:nth-child(4)")).click();
             driver.findElement(By.cssSelector("form input")).sendKeys(String.valueOf(num));
             driver.findElement(By.cssSelector("form input:nth-child(3)")).sendKeys(String.valueOf(i));
@@ -63,12 +67,13 @@ public class SuperCalculatorV2BONUS {
             countResults++;
             String resultOfMultiply = driver.findElement(By.cssSelector("form h2")).getText();
 
+            //Sum all the multiplies seen so far with the last multiply
             driver.findElement(By.cssSelector("select option:nth-child(1)")).click();
             driver.findElement(By.cssSelector("form input")).sendKeys(String.valueOf(sumOfMultiply));
             driver.findElement(By.cssSelector("form input:nth-child(3)")).sendKeys(String.valueOf(resultOfMultiply));
             driver.findElement(By.id("gobutton")).click();
             wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("tbody tr:nth-child(" + countResults + ")")));
-            sumOfMultiply += Integer.valueOf(driver.findElement(By.cssSelector("form h2")).getText());
+            sumOfMultiply = Integer.valueOf(driver.findElement(By.cssSelector("form h2")).getText());
             countResults++;
         }
         return sumOfMultiply;
@@ -77,7 +82,7 @@ public class SuperCalculatorV2BONUS {
     @Test
     public void test01(){
         int randomNumber = getRandomNumber();
-        int sum = multiplyNumbers(randomNumber);
+        int sum = multiplyNumbersAndSum(randomNumber);
         System.out.println("The number is: " + randomNumber +".\nThe sum of multiplys is: " + sum + ".");
     }
 
