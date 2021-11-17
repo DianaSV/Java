@@ -34,10 +34,10 @@ public class DataDrivenTesting {
     @Test(dataProvider = "data")
     @Description("Take data from this class.")
     public void test01(String valueToSearch, String searchResultTitle){
-        enterValuesAndCheckResult(valueToSearch, searchResultTitle);
+        //enterValuesAndCheckResult(valueToSearch, searchResultTitle);
     }
 
-    // Take data from different class
+    // Take data from different class + from CSV file
     @Test(dataProvider = "data", dataProviderClass = DataDrivenTestingBONUS.class)
     @Description("Take the values from different class.")
     public void test02_BONUS(String valueToSearch, String searchResultTitle){

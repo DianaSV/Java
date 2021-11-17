@@ -6,12 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.List;
 
+@Listeners(AutomationListeners.class)
 public class ControllersEx01 {
     WebDriver driver;
 
@@ -22,14 +21,14 @@ public class ControllersEx01 {
         driver.get("https://atidcollege.co.il/Xamples/ex_controllers.html");
     }
 
+    // ******************* wrong value here *********************
     @Test
     public void test01_enterValues() {
-        {
-            driver.findElement(By.name("firstname")).sendKeys("Diana");
-            driver.findElement(By.name("lastname")).sendKeys("Choubaev");
-            Select myContinent = new Select(driver.findElement(By.id("continents")));
-            myContinent.selectByVisibleText("Australia");
-        }
+        driver.findElement(By.name("firstname")).sendKeys("Diana");
+        driver.findElement(By.name("lasname")).sendKeys("Choubaev");
+        // ^^^^^^ WRONG VALUE ^^^^^^ should be "lastname"
+        Select myContinent = new Select(driver.findElement(By.id("continents")));
+        myContinent.selectByVisibleText("Australia");
     }
 
     @Test

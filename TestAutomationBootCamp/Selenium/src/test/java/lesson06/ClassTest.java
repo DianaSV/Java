@@ -39,8 +39,6 @@ public class ClassTest {
     @Test(description = "Enter data + check result is as expected")
     @Description("Enter data and make sure the price was updated to 10.50$")
     public void test02_EnterData(){
-        driver.findElement(By.id("input_5_22_3")).sendKeys(firstName);
-        driver.findElement(By.id("input_5_22_6")).sendKeys(lastName);
         driver.findElement(By.cssSelector("select option[value='Delivery|3']")).click();
         String currentTotalPrice = driver.findElement(By.className("ginput_total")).getText();
         Assert.assertEquals(currentTotalPrice, "$10.50", "After changing to delivery the price is not as expected.");
@@ -51,7 +49,8 @@ public class ClassTest {
             "Submit the form. " +
             "Make sure alert message is correct and close it. ")
     public void test03_Coupon(){
-
+        driver.findElement(By.id("input_5_22_3")).sendKeys(firstName);
+        driver.findElement(By.id("input_5_22_6")).sendKeys(lastName);
         String couponNumber = getCouponMoveToTextArea();
         submitForm();
         Alert popup = driver.switchTo().alert();

@@ -8,21 +8,19 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-import java.security.Key;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+// https://drive.google.com/file/d/1cONVuyyEd9u8Z95BBjdM0tvKFoNfaFzU/view
 @Listeners(AutomationListeners.class)
 public class ToDoList {
     WebDriver driver;
+    Actions action;
 
     @BeforeClass
     public void startSession(){
@@ -30,6 +28,7 @@ public class ToDoList {
         driver = new ChromeDriver();
         driver.get("https://todomvc.com/examples/react/#/");
         driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+        action = new Actions(driver);
     }
 
     @Test(description = "Add a new ToDo")
@@ -43,7 +42,6 @@ public class ToDoList {
     public void enterNewTodo(String key){
         driver.findElement(By.className("new-todo")).sendKeys(key);
         WebElement inputElem = driver.findElement(By.className("new-todo"));
-        Actions action = new Actions(driver);
         action.sendKeys(Keys.RETURN).build().perform();
     }
 
@@ -54,7 +52,6 @@ public class ToDoList {
 
     @Step
     public void toDoDeletion(){
-        Actions action = new Actions(driver);
         WebElement toDeleteElem = driver.findElement(By.cssSelector("ul li div label"));
         WebElement deletionButton = driver.findElement(By.className("destroy"));
         action.moveToElement(toDeleteElem).moveToElement(deletionButton).click();
@@ -70,8 +67,6 @@ public class ToDoList {
 
     @Step
     public void updateToDo(){
-
-        Actions action = new Actions(driver);
         WebElement elemToEdit = driver.findElement(By.cssSelector(".view"));
         elemToEdit.click();
         action.doubleClick(elemToEdit).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys("edited").sendKeys(Keys.RETURN).build().perform();

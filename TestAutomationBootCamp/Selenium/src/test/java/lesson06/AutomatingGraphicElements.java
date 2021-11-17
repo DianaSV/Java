@@ -1,11 +1,10 @@
 package lesson06;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.sikuli.script.FindFailed;
-import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 import org.testng.annotations.*;
 
@@ -16,32 +15,38 @@ public class AutomatingGraphicElements {
 
     WebDriver driver;
     Screen screen;
-    String path = "C:\\Automation\\Java\\TestAutomationBootCamp\\Selenium\\src\\test\\files\\ImagesForSikuli\\";
+    String path = "C:\\Automation\\TestAutomationBootCamp\\Selenium\\src\\test\\files\\ImagesForSikuli\\";
 
     @BeforeClass
     public void startSession(){
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        //ChromeOptions object
+        ChromeOptions opt = new ChromeOptions();
+        //set language to English
+        opt.addArguments("lang=en-GB");
+        driver = new ChromeDriver(opt);
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-        driver.get("https://www.google.com/maps");
+        driver.get("https://maps.google.com");
         screen = new Screen();
     }
 
     @Test
     public void test01() throws FindFailed, InterruptedException {
-        Thread.sleep(5000);
-        Pattern zoomInBtn = new Pattern(path + "plusSign.PNG").similar(90);
-        screen.find(zoomInBtn);
-        screen.click(zoomInBtn);
-        Thread.sleep(5000);
+        Thread.sleep(1000);
+        screen.click(path + "zoomIn.PNG");
+        Thread.sleep(1000);
         screen.click(path + "zoomOut.PNG");
+        Thread.sleep(1000);
+        screen.click(path + "searchInput.PNG");
         screen.type(path + "searchInput.PNG", "Haifa, Israel");
         screen.click(path + "searchBtn.PNG");
+        Thread.sleep(1000);
         screen.find(path + "GreatWallOfChina.PNG");
+        Thread.sleep(1000);
     }
 
     @AfterClass
     public void endSession(){
-        driver.quit();
+        //driver.quit();
     }
 }
