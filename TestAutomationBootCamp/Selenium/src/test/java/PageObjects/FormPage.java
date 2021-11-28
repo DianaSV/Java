@@ -1,9 +1,10 @@
 package PageObjects;
 
+import DataTables.Variables;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class FormPage {
+public class FormPage{
     @FindBy(id = "occupation")
     private WebElement occupationInput;
 

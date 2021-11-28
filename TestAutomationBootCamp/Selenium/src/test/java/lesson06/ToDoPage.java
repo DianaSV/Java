@@ -10,8 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
 
-
-//TODO fix this, driver is not recognized now, original version is in Rowen chat in slack
 public class ToDoPage extends ToDoList{
 
 //    Actions action = new Actions(driver);

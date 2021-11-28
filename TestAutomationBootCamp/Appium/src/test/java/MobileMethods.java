@@ -82,14 +82,14 @@ public class MobileMethods {
         FileUtils.copyFile(scrFile, new File("c:/Automation/Screenshots/screenshot2.png"));
     }
 
-    // For some reason it works the other way arround
-    // Functions return true if device is unlocked
+    // For some reason it works the other way around
+    // Function isDeviceLocked returns TRUE if device is UNLOCKED
     @Test
     public void test07() throws InterruptedException {
         if(driver.isDeviceLocked() == true){
             driver.lockDevice();
             Thread.sleep(3000);
-            driver.unlockDevice(); // Can't really do that as I have unlock authentication!!!
+            driver.unlockDevice();
             Assert.assertTrue(driver.isDeviceLocked());
         }
     }
@@ -97,11 +97,7 @@ public class MobileMethods {
     @Test
     public void test08(){
         String originalCode = driver.getPageSource();
-//        Assert.assertEquals(StringUtils.countMatches(originalCode, "ListView") , 4);
-//        System.out.println();
-
-        String[] strArr = originalCode.split("ListView");
-        System.out.println();
+        Assert.assertEquals(StringUtils.countMatches(originalCode, "ListView") , 4);
     }
 
     @AfterClass

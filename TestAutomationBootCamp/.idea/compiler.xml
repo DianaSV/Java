@@ -7,8 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Appium" />
+        <module name="Desktop2" />
         <module name="Selenium" />
+        <module name="RestApi" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Desktop" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

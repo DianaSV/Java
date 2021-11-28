@@ -1,6 +1,4 @@
 package lesson06;
-import com.sun.jna.platform.win32.Sspi;
-import org.python.modules.time.Time;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;

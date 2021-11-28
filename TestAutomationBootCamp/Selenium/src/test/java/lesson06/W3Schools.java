@@ -5,6 +5,7 @@ import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Description;
+import org.apache.commons.lang3.EnumUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,11 +16,9 @@ import org.testng.annotations.Test;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 // https://drive.google.com/file/d/119ZKKLK3k1s-a80N_Lzl04Cz4Tc2LgXs/view
@@ -49,7 +48,8 @@ public class W3Schools {
     public void test02(){
         List<WebElement> list = driver.findElements(By.cssSelector("#customers tr"));
         for(int i = 2; i < list.size(); i ++){
-            if(driver.findElement(By.cssSelector("#customers tr:nth-child(" + i + ") td:nth-child(" + 3 + ")")).getText().equals("Germany")){
+            String recCountry = driver.findElement(By.cssSelector("#customers tr:nth-child(" + i + ") td:nth-child(" + 3 + ")")).getText().toUpperCase(Locale.ROOT);
+            if(recCountry.equals(EnumUtils.isValidEnum(EuropeCoutnries.class, recCountry))){
                 System.out.println(driver.findElement(By.cssSelector("#customers tr td:nth-child(" + 1 + ")")).getText());
             }
         }
@@ -60,7 +60,6 @@ public class W3Schools {
         List<WebElement> list = driver.findElements(By.cssSelector("#customers tr"));
         List<String[]> listOfStrings = new ArrayList<String[]>();
         String[] rowData = new String[3];
-        System.out.println(list.get(0).getText());
 
         for(int i = 0; i < list.size() - 1; i++){
             rowData[0] = driver.findElement(By.cssSelector("#customers tr:nth-child(" + (i + 2) + ") td:nth-child(" + 1 + ")")).getText();

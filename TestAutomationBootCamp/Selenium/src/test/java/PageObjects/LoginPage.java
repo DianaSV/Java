@@ -13,9 +13,9 @@ public class LoginPage {
     @FindBy(id = "submit")
     private WebElement submitBtn;
 
-    public void loginAction(String recUsername, String recPasswrod){
+    public void loginAction(String recUsername, String recPassword){
         userName.sendKeys(recUsername);
-        password.sendKeys(recPasswrod);
+        password.sendKeys(recPassword);
         submitBtn.click();
     }
 }

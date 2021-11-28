@@ -1,0 +1,1 @@
+{"uuid":"8c062d68-d154-471c-9e87-4a0de69632ce","name":"Others.ElectronApps","children":["48dc5139-2a3a-4e46-af1c-da3311e136dd"],"befores":[{"name":"startSession","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1637504732922,"stop":1637504737983}],"afters":[],"links":[],"start":1637504732896,"stop":1637504738140}
